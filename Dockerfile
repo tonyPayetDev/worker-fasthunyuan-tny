@@ -34,4 +34,4 @@ RUN pip install packaging ninja && \
 COPY . /workspace
 
 # Définir le point d'entrée
-CMD [ "python", "-u", "src/handler.py" ]
+CMD [ "python", "-u", "/workspace/src/handler.py" ]
