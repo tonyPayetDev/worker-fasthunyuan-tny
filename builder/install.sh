@@ -39,6 +39,6 @@ export FLASH_ATTENTION_SKIP_CUDA_BUILD=TRUE
 pip install --no-cache-dir flash-attn==2.7.0.post2 --no-build-isolation
 
 echo "Installing FastVideo..."
-pip install --no-cache-dir git+https://github.com/hao-ai-lab/FastVideo.git@dd75ee8509943f2872b1b196d245afe1961c629b
+pip install --no-cache-dir git+https://github.com/hao-ai-lab/FastVideo.git
 
 echo "Installation complete!" 
