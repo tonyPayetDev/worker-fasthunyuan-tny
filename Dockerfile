@@ -31,8 +31,8 @@ RUN pip install packaging ninja && \
     pip install flash-attn==2.7.0.post2 --no-build-isolation
 # Copier le répertoire src (qui contient handler.py) dans le conteneur
 COPY src/ /workspace/src/
-COPY builder/ /workspace/builder/
-RUN ./builder/install.sh   
+COPY install.sh / /workspace/builder/install.sh 
+RUN ./install.sh   
 
 # Copier le reste de l'application
 COPY . /workspace
