@@ -21,11 +21,17 @@ RUN pip install --upgrade pip
 
 # Copier le fichier requirements.txt avant d'installer les dépendances
 COPY builder/requirements.txt /workspace/builder/requirements.txt
-COPY builder/install.sh /workspace/builder/install.sh
 
 # Installer les dépendances sans cache et en utilisant le résolveur héritage
 RUN pip install --no-cache-dir --use-deprecated=legacy-resolver -r /workspace/builder/requirements.txt
-RUN /workspace/builder/install.sh   
+# Copier les fichiers nécessaires
+COPY builder/ /workspace/builder/
+
+# Donner les permissions d'exécution au script
+RUN chmod +x /workspace/builder/install.sh
+
+# Exécuter le script d'installation
+RUN /workspace/builder/install.sh
 
 # Installer flash-attention avec CUDA build skipped
 ENV FLASH_ATTENTION_SKIP_CUDA_BUILD=TRUE
