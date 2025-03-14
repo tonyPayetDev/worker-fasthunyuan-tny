@@ -25,7 +25,7 @@ COPY builder/install.sh /workspace/builder/install.sh
 
 # Installer les dépendances sans cache et en utilisant le résolveur héritage
 RUN pip install --no-cache-dir --use-deprecated=legacy-resolver -r /workspace/builder/requirements.txt
-RUN ./workspace/builder/install.sh   
+RUN /workspace/builder/install.sh   
 
 # Installer flash-attention avec CUDA build skipped
 ENV FLASH_ATTENTION_SKIP_CUDA_BUILD=TRUE
