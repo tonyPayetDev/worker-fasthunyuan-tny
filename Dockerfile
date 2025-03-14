@@ -21,18 +21,18 @@ RUN pip install --upgrade pip
 
 # Copier le fichier requirements.txt avant d'installer les dépendances
 COPY builder/requirements.txt /workspace/builder/requirements.txt
+COPY builder/install.sh /workspace/builder/install.sh
 
 # Installer les dépendances sans cache et en utilisant le résolveur héritage
 RUN pip install --no-cache-dir --use-deprecated=legacy-resolver -r /workspace/builder/requirements.txt
+RUN ./workspace/builder/install.sh   
 
 # Installer flash-attention avec CUDA build skipped
 ENV FLASH_ATTENTION_SKIP_CUDA_BUILD=TRUE
 RUN pip install packaging ninja && \
     pip install flash-attn==2.7.0.post2 --no-build-isolation
 # Copier le répertoire src (qui contient handler.py) dans le conteneur
-COPY src/ /workspace/src/
-COPY install.sh / /workspace/builder/install.sh 
-RUN ./install.sh   
+
 
 # Copier le reste de l'application
 COPY . /workspace
